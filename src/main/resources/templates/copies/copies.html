@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Working Talent Library - Edit Copy</title>
+
+  <!-- Bootstrap CSS Import -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+    crossorigin="anonymous" />
+  <!-- General CSS -->
+  <link rel="stylesheet" href="../../static/style.css" th:href="@{../style.css}" />
+</head>
+<body>
+  <!--_____________navigation bar_______________-->
+  <div th:insert="@{../fragments/navbar.html}"></div>
+  <!--______________end navigation bar______________-->
+
+
+  <!-- ______________Main page view______________ -->
+  <div class="container">
+    <br>
+    <h1>Copy interface</h1>
+    
+    <div th:switch="${copies}">
+      <div th:case="*">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Book</th>
+              <th>Version</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="copies : ${copies}">
+              <td th:text="${copies.copyPkId.bookId}"></td>
+              <td th:text="${copies.copyPkId.copyId}"></td>
+              <td th:text="${copies.userId}"></td>
+              <td>
+                <a th:href="@{/copies/delete/{id1}/{id2}(id1=${copies.copyPkId.bookId}, id2=${copies.copyPkId.copyId})}">delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="container">
+    <form action="#" th:action="@{create}" th:object="${copies}" method="post">
+       <div>
+        <label for="userId">User ID</label>
+        <input type="text" th:field="*{userId}" id="userId" placeholder="User id" />
+      </div>
+      <div>
+        <label for="bookId">Book ID</label>
+        <input type="text" th:field="*{copyPkId}" id="bookId" placeholder="Book id" /> 
+      </div>
+    </form>
+  </div> -->
+  <!-- ______________End of main page view______________ -->
+
+  <!-- Javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous">
+  </script>
+</body>
+</html>

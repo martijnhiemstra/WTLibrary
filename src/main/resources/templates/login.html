@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org"
+  xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+<head>
+  <title>Working talent library</title>
+
+  <!-- Bootstrap CSS Import -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+    crossorigin="anonymous" />
+  <style>
+    #loginForm {
+      position:fixed;
+      top:45%;
+      left: calc(50vw - 105px);
+      text-align: center;
+    }
+    #loginForm div {
+      margin: .2rem 0;
+    }
+    #loginForm label {
+      width: 6em;
+      padding-right: .2em;
+      text-align: left;
+    }
+    #loginForm input {
+      width: 210px;
+    }
+</style>
+</head>
+<body>
+
+  <!-- Invalid login responses -->
+  <div th:if = "${param.error}">
+   <p>Invalid username and password.</p>
+  </div>
+  <div th:if = "${param.logout}">
+   <p>You have been logged out.</p>
+  </div>
+  
+  <!-- Login prompts -->
+  <form id="loginForm" th:action = "@{/login}" method = "post">
+    <div class="username">
+      <label> User Name: </label><input type = "text" name = "username"/>
+    </div>
+    <div class="password">
+      <label> Password: </label><input type = "password" name = "password"/>
+    </div>
+    <div>
+      <input class="btn btn-primary" type = "submit" value = "Sign In"/>
+    </div>
+  </form>
+  <!-- Javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous">
+  </script>
+</body>
+</html>
